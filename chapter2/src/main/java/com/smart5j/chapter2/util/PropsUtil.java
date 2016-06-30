@@ -25,7 +25,9 @@ public class PropsUtil {
         InputStream inputStream = null;
 
         try{
-            inputStream = Thread.currentThread()
+            inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("../resources/config.properties");
+        } finally {
+
         }
         return  props;
     }
