@@ -8,7 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>这是一个测试的页面</title>
+    <%--更改了jsp-也就是页面后,不需要重新运行,只需要刷新一下浏览器上的页面后,就可以--%>
 </head>
 <body>
     <h1>Hello World</h1>

@@ -8,6 +8,8 @@ import java.util.Map;
 
 /**
  * Created by wangrui on 16/6/30.
+ *
+ * 判断集合非空的工具类
  */
 public class CollectionUtil {
 
@@ -27,5 +29,7 @@ public class CollectionUtil {
     }
 
     // 判断Map是否非空
-    pub
+    public static boolean isNotEmpty(Map<?, ?> map) {
+        return !isEmpty(map);
+    }
 }
