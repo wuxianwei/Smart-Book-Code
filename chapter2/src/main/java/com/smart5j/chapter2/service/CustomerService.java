@@ -23,38 +23,22 @@ public class CustomerService {
 
     public static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(CustomerService.class);
 
+
+
     // 获取客户的列表
     public List<Customer> getCustomerList(String keyword) {
 
-        Connection connection = null;
+        Connection connection = DatabaseHelper.getConnection();
 
 
         try{
             List<Customer> customerList = new ArrayList<Customer>();
             String sql = "select * from customer";
-            connection = DatabaseHelper.getConnection();
-            PreparedStatement statement = connection.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery();
 
-            while (resultSet.next()){
-                Customer customer = new Customer();
-                customer.setId(resultSet.getLong("id"));
-                customer.setName(resultSet.getString("name"));
-                customer.setContact(resultSet.getString("contact"));
-                customer.setTelephone(resultSet.getString("telephone"));
-                customer.setEmail(resultSet.getString("email"));
-                customer.setRemark(resultSet.getString("remark"));
-
-                customerList.add(customer);
-            }
-
-            return customerList;
-        } catch (SQLException e){
-            LOGGER.error("excute sql failure",e);
-        } finally {
+            return DatabaseHelper.queryEntityList(Customer.class, sql, connection);
+        }finally {
             DatabaseHelper.closeConnection(connection);
         }
-        return  null;
     }
     // 获取客户的列表
     public List<Customer> getCustomerList() {
