@@ -1,7 +1,8 @@
 package com.smart5j.chapter2.test;
 
+import com.smart5j.chapter2.helper.DatabaseHelper;
 import com.smart5j.chapter2.model.Customer;
-import com.smart5j.chapter2.service.CustomerCreateService;
+import com.smart5j.chapter2.service.CustomerService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,17 +10,16 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Created by miraclewong on 16/6/29.
  */
 public class CustomerServiceTest {
     
-    private  final CustomerCreateService customerCreateService;
+    private  final CustomerService customerService;
 
     public CustomerServiceTest() {
-        this.customerCreateService =new CustomerCreateService();
+        this.customerService =new CustomerService();
     }
     
     @Before
@@ -29,7 +29,7 @@ public class CustomerServiceTest {
 
     @Test
     public void getCustomerListTest() throws Exception{
-        List<Customer> customerList = customerCreateService.getCustomerList();
+        List<Customer> customerList = customerService.getCustomerList();
         Assert.assertEquals(2,customerList.size());
     }
 
@@ -37,7 +37,7 @@ public class CustomerServiceTest {
     @Test
     public void getCustomerTest() throws  Exception{
         long id = 1;
-        Customer customer = customerCreateService.getCustomer(id);
+        Customer customer = customerService.getCustomer(id);
         Assert.assertNotNull(customer);
     }
 
@@ -48,7 +48,7 @@ public class CustomerServiceTest {
         fieldMap.put("contact", "John");
         fieldMap.put("telephone ", "15827198245");
         fieldMap.put("name", "customer001");
-        boolean result = customerCreateService.createCustomer(fieldMap);
+        boolean result = customerService.createCustomer(fieldMap);
 
         Assert.assertTrue(!result);
     }
@@ -58,14 +58,20 @@ public class CustomerServiceTest {
         long id = 1;
         Map<String, Object> fieldMap = new HashMap<String, Object>();
         fieldMap.put("contact", "Eric");
-        boolean result = customerCreateService.updateCustomer(id, fieldMap);
+        boolean result = customerService.updateCustomer(id, fieldMap);
         Assert.assertTrue(!result);
     }
 
     @Test
     public void deleteCustomerTest() throws Exception {
         long id = 1;
-        boolean result = customerCreateService.deleteCustomer(id);
+        boolean result = customerService.deleteCustomer(id);
         Assert.assertTrue(result);
+    }
+
+    @Test
+    public void connectJDBCTest() throws Exception{
+        DatabaseHelper databaseHelper = new DatabaseHelper();
+        databaseHelper.getConnection();
     }
 }
