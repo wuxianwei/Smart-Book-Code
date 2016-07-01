@@ -27,28 +27,13 @@ public class CustomerService {
 
     // 获取客户的列表
     public List<Customer> getCustomerList(String keyword) {
-
-        Connection connection = DatabaseHelper.getConnection();
-
-
-        try{
-            List<Customer> customerList = new ArrayList<Customer>();
-            String sql = "select * from customer";
-
-            return DatabaseHelper.queryEntityList(Customer.class, sql, connection);
-        }finally {
-            DatabaseHelper.closeConnection(connection);
-        }
+        String sql = "select * from customer";
+        return DatabaseHelper.queryEntityList(Customer.class, sql);
     }
     // 获取客户的列表
     public List<Customer> getCustomerList() {
-        // TODO: 16/6/29
-        List<Customer> list = new ArrayList<Customer> ();
-        Customer customer1 = new Customer();
-        Customer customer2 = new Customer();
-        list.add(customer1);
-        list.add(customer2);
-        return  list;
+        String sql = "select * from customer";
+        return DatabaseHelper.queryEntityList(Customer.class, sql);
     }
     // 获取客户
     public Customer getCustomer(long id){
