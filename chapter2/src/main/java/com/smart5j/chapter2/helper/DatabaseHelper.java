@@ -28,7 +28,7 @@ public final class DatabaseHelper {
 
     static {
         Properties conf = PropsUtil.loadProps("config.properties");
-        DRIVER = conf.getProperty("jdbc.driverClassName");
+        DRIVER = conf.getProperty("jdbc.driver");
         URL = conf.getProperty("jdbc.url");
         USERNMAE = conf.getProperty("jdbc.username");
         PASSWORD = conf.getProperty("jdbc.password");
