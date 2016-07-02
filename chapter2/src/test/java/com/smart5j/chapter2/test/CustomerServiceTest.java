@@ -24,7 +24,7 @@ public class CustomerServiceTest {
     
     @Before
     public void init(){
-        // TODO: 16/6/30
+        DatabaseHelper.executeSqlFile("sql/customer_init.sql");
     }
 
     @Test

@@ -3,6 +3,7 @@ package com.smart5j.chapter2.helper;
 
 import com.smart5j.chapter2.util.CollectionUtil;
 import com.smart5j.chapter2.util.PropsUtil;
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -32,30 +33,30 @@ public final class DatabaseHelper {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(DatabaseHelper.class);
 
-    public static final QueryRunner QUERY_RUNNER = new QueryRunner();
+    public static final QueryRunner QUERY_RUNNER;
+
+    public static final BasicDataSource DATA_SOURCE;
 
     // 使用ThreadLocal存放本地的线程变量
-    private static final ThreadLocal<Connection> CONNECTION_HOLDER = new ThreadLocal<Connection>();
-
-    private static final String DRIVER;
-    private static final String URL;
-    private static final String USERNMAE;
-    private static final String PASSWORD;
-
+    private static final ThreadLocal<Connection> CONNECTION_HOLDER;
 
     static {
-        Properties conf = PropsUtil.loadProps("config.properties");
-        DRIVER = conf.getProperty("jdbc.driver");
-        URL = conf.getProperty("jdbc.url");
-        USERNMAE = conf.getProperty("jdbc.username");
-        PASSWORD = conf.getProperty("jdbc.password");
+        QUERY_RUNNER = new QueryRunner();
 
-        try{
-            Class.forName(DRIVER);
-        }
-        catch (ClassNotFoundException e) {
-            LOGGER.error("can not load the jdbc driver", e);
-        }
+        CONNECTION_HOLDER = new ThreadLocal<Connection>();
+
+        Properties conf = PropsUtil.loadProps("config.properties");
+        String driver = conf.getProperty("jdbc.driver");
+        String url = conf.getProperty("jdbc.url");
+        String username = conf.getProperty("jdbc.username");
+        String password = conf.getProperty("jdbc.password");
+
+        DATA_SOURCE = new BasicDataSource();
+        DATA_SOURCE.setDriverClassName(driver);
+        DATA_SOURCE.setUrl(url);
+        DATA_SOURCE.setUsername(username);
+        DATA_SOURCE.setPassword(password);
+
     }
 
 
@@ -70,7 +71,7 @@ public final class DatabaseHelper {
         Connection connection = CONNECTION_HOLDER.get();
         if (connection == null) {
             try {
-                connection = DriverManager.getConnection(URL, USERNMAE, PASSWORD);
+                connection =DATA_SOURCE.getConnection();
             } catch (SQLException e) {
                 LOGGER.error("get connection failure", e);
             } finally {
@@ -112,9 +113,10 @@ public final class DatabaseHelper {
         } catch (SQLException e) {
             LOGGER.error("query entity list failure", e);
             throw new RuntimeException(e);
-        } finally {
-            closeConnection();
         }
+//        finally {
+//            closeConnection();
+//        }
         return entityList;
     }
 
@@ -131,9 +133,10 @@ public final class DatabaseHelper {
         }catch (SQLException e){
             LOGGER.error("query entity failure", e);
             throw  new RuntimeException(e);
-        } finally {
-            closeConnection();
         }
+//        finally {
+//            closeConnection();
+//        }
         return  entity;
     }
 
