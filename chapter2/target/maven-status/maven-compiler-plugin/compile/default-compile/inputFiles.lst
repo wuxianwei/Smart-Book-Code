@@ -1,1 +1,14 @@
-/Users/miraclewong/book/chapter2/src/main/java/com/smart5j/chapter2/HelloServlet.java
+/Users/wangrui/Projects/Smart-Book-Code/chapter2/src/main/java/com/smart5j/chapter2/controller/CustomerServlet.java
+/Users/wangrui/Projects/Smart-Book-Code/chapter2/src/main/java/com/smart5j/chapter2/controller/CustomerController.java
+/Users/wangrui/Projects/Smart-Book-Code/chapter2/src/main/java/com/smart5j/chapter2/util/StringUtil.java
+/Users/wangrui/Projects/Smart-Book-Code/chapter2/src/main/java/com/smart5j/chapter2/util/CastUtil.java
+/Users/wangrui/Projects/Smart-Book-Code/chapter2/src/main/java/com/smart5j/chapter2/util/PropsUtil.java
+/Users/wangrui/Projects/Smart-Book-Code/chapter2/src/main/java/com/smart5j/chapter2/controller/CustomerShowServlet.java
+/Users/wangrui/Projects/Smart-Book-Code/chapter2/src/main/java/com/smart5j/chapter2/controller/CustomerDeleteServlet.java
+/Users/wangrui/Projects/Smart-Book-Code/chapter2/src/main/java/com/smart5j/chapter2/service/CustomerService.java
+/Users/wangrui/Projects/Smart-Book-Code/chapter2/src/main/java/com/smart5j/chapter2/HelloServlet.java
+/Users/wangrui/Projects/Smart-Book-Code/chapter2/src/main/java/com/smart5j/chapter2/helper/DatabaseHelper.java
+/Users/wangrui/Projects/Smart-Book-Code/chapter2/src/main/java/com/smart5j/chapter2/util/CollectionUtil.java
+/Users/wangrui/Projects/Smart-Book-Code/chapter2/src/main/java/com/smart5j/chapter2/model/Customer.java
+/Users/wangrui/Projects/Smart-Book-Code/chapter2/src/main/java/com/smart5j/chapter2/controller/CustomerCreateServlet.java
+/Users/wangrui/Projects/Smart-Book-Code/chapter2/src/main/java/com/smart5j/chapter2/controller/CustomerEditServlet.java

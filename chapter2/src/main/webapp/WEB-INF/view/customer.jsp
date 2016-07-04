@@ -15,9 +15,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css"/>
     <title>客户管理</title>
 </head>
